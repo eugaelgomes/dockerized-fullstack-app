@@ -7,7 +7,7 @@ export default defineConfig({
     port: 80,
     proxy: {
       "/api": {
-        target: "https://auth-flow-api.gaelgomes.dev",
+        target: "https://auth-flow-api.gaelgomes.dev/api",
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/api/, ''),

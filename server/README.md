@@ -1,34 +1,34 @@
-# Hello guys! 👾
+# Olá pessoal! 👾
 
-### This is my new ( not so new, just rebuilt ) project.
+### Este é meu novo (nem tão novo, apenas reconstruído) projeto.
 
-### User Authentication API
+### API de Autenticação de Usuários
 
-This project was originally created some time ago, but it became outdated. I decided to revisit the code with the help of LLMs, applying best practices in  **development** ,  **security** , and  **CRUD structure organization.
-( LLMs can make life easier, but I strive to treat them as guidance, keeping self-learning at the core of the journey. )**
+Este projeto foi originalmente criado há algum tempo, mas ficou desatualizado. Decidi revisar o código com a ajuda de LLMs, aplicando as melhores práticas em **desenvolvimento**, **segurança** e **organização da estrutura CRUD**.
+(LLMs podem facilitar a vida, mas procuro tratá-los como orientação, mantendo o auto-aprendizado como núcleo da jornada.)**
 
-The **Auth Flow API** leverages several libraries and services to enhance its features, such as:
+A **API de Fluxo de Autenticação** utiliza várias bibliotecas e serviços para aprimorar seus recursos, como:
 
-* **[IP Info API](https://ipinfo.io/)** for retrieving IP-related information
-* **Nodemailer** for automated email delivery
-* **Bcrypt** for password and token hashing
-* **PostgreSQL** for database management
+* **[IP Info API](https://ipinfo.io/)** para obter informações relacionadas ao IP
+* **Nodemailer** para entrega automatizada de e-mails
+* **Bcrypt** para hash de senhas e tokens
+* **PostgreSQL** para gerenciamento de banco de dados
 
-The architecture was designed with a focus on **responsibility segregation** and **secure database connections** . Future versions will expand the API with  **token- and secret-based authentication** , ensuring greater robustness and integration security.
+A arquitetura foi projetada com foco na **segregação de responsabilidades** e **conexões seguras com o banco de dados**. Versões futuras expandirão a API com **autenticação baseada em token e segredos**, garantindo maior robustez e segurança na integração.
 
-Play with API routes - see the routes at the "auth-api.postman_collection.json" file: [https://auth-flow-api.gaelgomes.dev/api/](https://auth-flow-api.gaelgomes.dev/api/)
+Experimente as rotas da API - veja as rotas no arquivo "auth-api.postman_collection.json": [https://auth-flow-api.gaelgomes.dev/api/](https://auth-flow-api.gaelgomes.dev/api/)
 
 ---
 
-### Features
+### Funcionalidades
 
-* User registration and login
-* JWT-based authentication
-* Password hashing
-* Error handling and;
-* IP Geolocation logs
+* Registro e login de usuários
+* Autenticação baseada em JWT
+* Hash de senhas
+* Tratamento de erros e;
+* Logs de geolocalização por IP
 
-### Technologies
+### Tecnologias
 
 * JavaScript / TypeScript
 * Node.js
@@ -39,30 +39,30 @@ Play with API routes - see the routes at the "auth-api.postman_collection.json" 
 * IP Info API
 * Postgres SQL
 
-### Installation
+### Instalação
 
-1. Clone the repository:
+1. Clone o repositório:
 
 <pre class="overflow-visible!" data-start="468" data-end="506"><div class="contain-inline-size rounded-2xl relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"><span class="" data-state="closed"></span></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-bash"><span><span>git </span><span>clone</span><span> <repository_url>
 </span></span></code></div></div></pre>
 
-2. Install dependencies:
+2. Instale as dependências:
 
 <pre class="overflow-visible!" data-start="534" data-end="557"><div class="contain-inline-size rounded-2xl relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"><span class="" data-state="closed"></span></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-bash"><span><span>npm install
 </span></span></code></div></div></pre>
 
-3. Create a `.env` file with your environment variables.
+3. Crie um arquivo `.env` com suas variáveis de ambiente.
 
-### Usage
+### Uso
 
-Start the server:
+Inicie o servidor:
 
 <pre class="overflow-visible!" data-start="646" data-end="669"><div class="contain-inline-size rounded-2xl relative bg-token-sidebar-surface-primary"><div class="sticky top-9"><div class="absolute end-0 bottom-0 flex h-9 items-center pe-2"><div class="bg-token-bg-elevated-secondary text-token-text-secondary flex items-center gap-4 rounded-sm px-2 font-sans text-xs"><span class="" data-state="closed"></span></div></div></div><div class="overflow-y-auto p-4" dir="ltr"><code class="whitespace-pre! language-bash"><span><span>npm run dev
 </span></span></code></div></div></pre>
 
-The API will be running on `http://localhost:8080` like defined on index.ts
+A API estará rodando em `http://localhost:8080` conforme definido no index.ts
 
-### SQL Query to create tables
+### Consulta SQL para criar tabelas
 
 ```pgsql
 -- Postgres SQL
@@ -171,9 +171,9 @@ CREATE INDEX idx_attempted_at ON login_attempts(attempted_at);
 
 ```
 
-### Session Table
+### Tabela de Sessões
 
-Table to store session on database
+Tabela para armazenar sessão no banco de dados
 
 ```pgsql
 CREATE TABLE "session" (
@@ -194,9 +194,9 @@ DROP TABLE IF EXISTS "session";
 
 
 
-### Structure Tree
+### Estrutura de Pastas
 
-Folder and files struture of this project bellow:
+Estrutura de pastas e arquivos deste projeto abaixo:
 
 ```markdown
 auth-flow-api/
@@ -252,20 +252,20 @@ auth-flow-api/
                 └── welcome-mail.js
 ```
 
-### API Routes
+### Rotas da API
 
 ```markdown
-# Base URL
+# URL Base
 http://localhost:8080/api/
 
-# User creation
+# Criação de usuário
 /users/create-account
 
-# Authentication routes
+# Rotas de autenticação
 /auth/signin
 /auth/logout
 
-# Password management
+# Gerenciamento de senha
 /password/forgot-password
 /password/reset-password
 
@@ -275,4 +275,4 @@ http://localhost:8080/api/
 
 ---
 
-Developed by [@eugaelgomes](https://github.com/eugaelgomes). See my portfolio [gaelgomes.dev](https://gaelgomes.dev)
+Desenvolvido por [@eugaelgomes](https://github.com/eugaelgomes). Veja meu portfólio em [gaelgomes.dev](https://gaelgomes.dev)
