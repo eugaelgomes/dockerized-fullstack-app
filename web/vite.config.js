@@ -10,6 +10,12 @@ export default defineConfig({
         target: "https://auth-flow-api.gaelgomes.dev",
         changeOrigin: true,
         secure: false,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+        configure: (proxy, _options) => {
+          proxy.on('proxyRes', function(proxyRes, req, res) {
+            proxyRes.headers['Access-Control-Allow-Origin'] = '*';
+          });
+        }
       },
     },
   }
