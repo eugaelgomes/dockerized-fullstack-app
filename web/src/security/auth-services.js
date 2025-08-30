@@ -1,5 +1,6 @@
 // services/authService.js
 import { jwtDecode } from "jwt-decode";
+import { API_BASE_URL } from '../config/api';
 
 export function decodeToken(token) {
   try {
@@ -10,7 +11,7 @@ export function decodeToken(token) {
 }
 
 export async function createUserService(data) {
-  const response = await fetch("/api/users/create-account", {
+  const response = await fetch(`${API_BASE_URL}/users/create-account`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -38,7 +39,7 @@ export async function createUserService(data) {
 
 
 export async function login(credentials) {
-  const response = await fetch("/api/auth/signin", {
+  const response = await fetch(`${API_BASE_URL}/auth/signin`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(credentials),
@@ -49,7 +50,7 @@ export async function login(credentials) {
 }
 
 export async function getCurrentUser(token) {
-  const response = await fetch("/auth/me", {
+  const response = await fetch(`${API_BASE_URL}/auth/me`, {
     method: "GET",
     headers: { Authorization: `Bearer ${token}` },
   });
@@ -59,7 +60,7 @@ export async function getCurrentUser(token) {
 }
 
 export async function getUsers(token) {
-  const response = await fetch("/auth/users", {
+  const response = await fetch(`${API_BASE_URL}/auth/users`, {
     method: "GET",
     headers: { Authorization: `Bearer ${token}` },
   });
@@ -69,7 +70,7 @@ export async function getUsers(token) {
 }
 
 export async function requestPasswordRecovery(email) {
-  const response = await fetch("/api/password/forgot-password", {
+  const response = await fetch(`${API_BASE_URL}/password/forgot-password`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email }),
@@ -79,7 +80,7 @@ export async function requestPasswordRecovery(email) {
 }
 
 export async function resetPassword(token, password) {
-  const response = await fetch("/api/password/reset-password", {
+  const response = await fetch(`${API_BASE_URL}/password/reset-password`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ token, password }),
