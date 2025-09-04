@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import RecuperarSenha from "../components/recuperar-senha";
 import ResetSenha from "../components/redefinir-senha";
-import { useAuth } from "../security/AuthContext";
+import { useAuth } from "../context/AuthContext";
 
 export default function Login() {
   const [username, setUsername] = useState("");

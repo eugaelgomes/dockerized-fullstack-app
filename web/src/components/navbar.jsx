@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../security/AuthContext";
+import { useAuth } from "../context/AuthContext";
 import { IoPersonCircleSharp } from "react-icons/io5";
-import { getRoutesByUserRole } from "../utils/routes-map";
 
 export default function Navbar() {
   const { user, logout } = useAuth();
@@ -27,40 +26,11 @@ export default function Navbar() {
     };
   }, []);
 
-  // Filtra rotas baseado na role do usuário
-  const userRoutes = getRoutesByUserRole(user.role);
-
   const getNomeExibicao = () => {
     if (!user || !user.name) return "Usuário";
     const partesNome = user.name.split(" ");
     if (partesNome.length === 1) return partesNome[0];
     return `${partesNome[0]} ${partesNome[partesNome.length - 1]}`;
-  };
-
-  const renderRoutes = (routes) => {
-    return routes.map((route) => {
-      if (route.subroutes) {
-        // Renderiza categoria com subrotas
-        return (
-          <div key={route.name} className="flex flex-col">
-            <span className="text-gray-400 text-sm px-3 py-1">{route.name}</span>
-            <div className="ml-3">
-              {renderRoutes(route.subroutes)}
-            </div>
-          </div>
-        );
-      }
-      
-      return (
-        <Link
-          key={route.path}
-          to={route.path}
-          className="text-white hover:text-color_yellow transition-colors duration-300"
-        >
-          {route.name}
-        </Link>
-      );
-    });
   };
 
   return (
@@ -74,10 +44,6 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Menu Principal (Desktop) */}
-          <div className="hidden md:flex md:items-center md:space-x-8">
-            {renderRoutes(userRoutes)}
-          </div>
 
           <div className="flex items-center space-x-4">
             {/* Menu do Usuário (Desktop) */}
@@ -119,7 +85,6 @@ export default function Navbar() {
       {isMobileMenuOpen && (
         <div className="md:hidden bg-color_dark_blue/95 absolute w-full z-40">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            {renderRoutes(userRoutes)}
             <div className="border-t border-gray-700 my-2"></div>
             <div className="px-3 py-2">
                 <p className="font-bold">{user.name}</p>

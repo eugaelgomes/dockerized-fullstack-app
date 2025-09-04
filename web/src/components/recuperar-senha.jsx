@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useAuth } from "../security/AuthContext";
+import { useAuth } from "../context/AuthContext";
 
 function RecuperarSenha({ isVisible, onClose }) {
   const [email, setEmail] = useState("");

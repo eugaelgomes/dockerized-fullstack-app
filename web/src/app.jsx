@@ -1,5 +1,5 @@
 import { BrowserRouter } from "react-router-dom";
-import { AuthProvider } from "./security/AuthContext";
+import { AuthProvider } from "./context/AuthContext";
 import Rotas from "./routes/routes";
 
 export default function App() {

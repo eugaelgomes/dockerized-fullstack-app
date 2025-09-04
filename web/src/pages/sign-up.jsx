@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { useAuth } from "../security/AuthContext";
+import { useAuth } from "../context/AuthContext";
 
 export default function SignUp() {
   const { createUser } = useAuth();
