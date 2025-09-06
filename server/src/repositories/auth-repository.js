@@ -4,7 +4,7 @@ class AuthRepository {
   // Query to find user by username or email
   async findUserByUsername(username) {
     const query = `
-      SELECT user_db_id, user_uid, full_name, email, password, role_id, role_name
+      SELECT user_db_id, user_uid, username, full_name, email, password, role_id, role_name, created_at
       FROM users
       WHERE username = $1 OR email = $1
       LIMIT 1

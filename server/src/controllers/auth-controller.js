@@ -82,10 +82,12 @@ class AuthController {
 
       return res.json({
         id: user.user_db_id,
-        username: user.user_uid,
         name: user.full_name,
+        email: user.email,
+        username: user.username,
         role: user.role_id,
         role: user.role_name,
+        createdAt: user.created_at,
       });
     } catch (error) {
       return res.status(500).json({ message: "Internal server error" });
