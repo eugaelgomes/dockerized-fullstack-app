@@ -64,7 +64,7 @@ class AuthController {
       return res.status(200).json({
         ...payload,
         token,
-        message: "Login successful!",
+        message: "Sucessefully logged in!",
         redirectUrl: "/home",
         // return: { success: true },
       });
@@ -88,6 +88,33 @@ class AuthController {
         role: user.role_id,
         role: user.role_name,
         createdAt: user.created_at,
+      });
+    } catch (error) {
+      return res.status(500).json({ message: "Internal server error" });
+    }
+  }
+
+  async updateProfile(req, res) {
+    const { name, username, email } = req.body;
+    try {
+      const updatedUser = await AuthRepository.updateUserProfile(
+        req.user.userId,
+        name,
+        email,
+        username,
+      );
+      if (!updatedUser) {
+        return res.status(404).json({ message: "User not found" });
+      }
+      return res.json({
+        id: updatedUser.user_db_id,
+        name: updatedUser.full_name,
+        email: updatedUser.email,
+        username: updatedUser.username,
+        role: updatedUser.role_id,
+        role: updatedUser.role_name,
+        createdAt: updatedUser.created_at,
+        message: "Profile updated successfully",
       });
     } catch (error) {
       return res.status(500).json({ message: "Internal server error" });

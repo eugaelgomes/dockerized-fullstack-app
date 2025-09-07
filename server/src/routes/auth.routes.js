@@ -4,6 +4,7 @@ const { verifyToken } = require("@/middlewares/auth/auth-middleware");
 const AuthController = require("@/controllers/auth-controller");
 const { loginLimiter } = require("@/middlewares/limiters");
 const toString = require("@/middlewares/stringfy");
+const authController = require("../controllers/auth-controller");
 
 const router = express.Router();
 
@@ -16,6 +17,10 @@ router.post(
 );
 
 router.get("/me", verifyToken, AuthController.getProfile.bind(AuthController));
+router.put(
+  "/me",
+  verifyToken, authController.updateProfile.bind(authController)
+);
 
 router.post("/logout", verifyToken, AuthController.logout.bind(AuthController));
 

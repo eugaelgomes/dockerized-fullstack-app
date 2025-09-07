@@ -13,6 +13,17 @@ class AuthRepository {
     return results[0];
   }
 
+  async updateUserProfile(userId, name, email, username) {
+    const query = `
+      UPDATE users
+      SET full_name = $1, email = $2, username = $3
+      WHERE user_db_id = $4
+      RETURNING user_db_id, user_uid, username, full_name, email, role_id, role_name, created_at
+    `;
+    const results = await executeQuery(query, [name, email, username, userId]);
+    return results[0];
+  }
+
   // Save location logs for user
   async logUserLocation(userId, ip, timestamp, location, userAgent) {
     const query = `
