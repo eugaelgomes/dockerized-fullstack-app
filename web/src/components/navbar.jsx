@@ -34,7 +34,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="relative bg-color_dark_blue text-white shadow-md">
+    <nav className="relative rounded-lg shadow-sm shadow-gray-600 border border-gray-800 mr-4 ml-4 mt-4 bg-slate-900 text-white">
       <div className="mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -57,7 +57,7 @@ export default function Navbar() {
                 <IoPersonCircleSharp className={`w-8 h-8 transition-transform duration-300 ${isUserMenuOpen ? 'text-color_yellow' : ''}`} />
               </button>
               {isUserMenuOpen && (
-                <div className="absolute right-0 mt-2 w-max bg-white rounded-md shadow-lg py-1 z-50 text-gray-800">
+                <div className="fixed align-middle right-0 mt-2 w-max bg-white rounded-md shadow-lg py-1 z-50 text-gray-800">
                   <div className="px-4 py-2 border-b">
                     <p className="font-bold text-sm">{user.name}</p>
                     <p className="text-xs text-gray-500 truncate">{user.email}</p>

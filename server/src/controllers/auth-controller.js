@@ -117,6 +117,32 @@ class AuthController {
         message: "Profile updated successfully",
       });
     } catch (error) {
+      console.error("Error updating profile:", error);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+  }
+
+  async updatePassword(req, res) {
+    const { currentPassword, newPassword } = req.body;
+    try {
+      const updateUserPassword =  await AuthRepository.updateUserPassword(
+        req.user.userId, newPassword, currentPassword,
+      );
+      if (!updateUserPassword) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      const match = await bcrypt.compare(currentPassword, updateUserPassword.password);
+      if (!match) {
+        return res.status(401).json({ message: "Current password is incorrect" });
+      }
+
+      const hashedPassword = await bcrypt.hash(newPassword, 10);
+      await AuthRepository.updateUserPassword(req.user.userId, hashedPassword);
+
+      return res.json({ message: "Password updated successfully" });
+    } catch (error) {
+      console.error("Error updating password:", error);
       return res.status(500).json({ message: "Internal server error" });
     }
   }

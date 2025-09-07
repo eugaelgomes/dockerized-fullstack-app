@@ -24,6 +24,15 @@ class AuthRepository {
     return results[0];
   }
 
+  async updateUserPassword(userId, hashedPassword) {
+    const query = `
+      UPDATE users
+      SET password = $1
+      WHERE user_db_id = $2
+    `;
+    return await executeQuery(query, [hashedPassword, userId]);
+  }
+
   // Save location logs for user
   async logUserLocation(userId, ip, timestamp, location, userAgent) {
     const query = `

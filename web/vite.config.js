@@ -7,10 +7,9 @@ export default defineConfig({
     port: 80,
     proxy: {
       "/api": {
-        target: "https://auth-flow-api.gaelgomes.dev/api",
+        target: "http://server:8080",
         changeOrigin: true,
         secure: false,
-        rewrite: (path) => path.replace(/^\/api/, ''),
         configure: (proxy, _options) => {
           proxy.on('proxyRes', function(proxyRes, req, res) {
             proxyRes.headers['Access-Control-Allow-Origin'] = '*';

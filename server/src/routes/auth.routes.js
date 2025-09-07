@@ -18,8 +18,18 @@ router.post(
 
 router.get("/me", verifyToken, AuthController.getProfile.bind(AuthController));
 router.put(
-  "/me",
+  "/me/update-profile",
   verifyToken, authController.updateProfile.bind(authController)
+);
+router.put(
+  "/me/update-password",
+  verifyToken,
+  [
+    body("currentPassword").trim(),
+    body("newPassword").isLength({ min: 6 }).withMessage("New password must be at least 6 characters long"),
+  ],
+  toString,
+  AuthController.updatePassword.bind(AuthController)
 );
 
 router.post("/logout", verifyToken, AuthController.logout.bind(AuthController));
